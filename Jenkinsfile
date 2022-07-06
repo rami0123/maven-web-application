@@ -3,7 +3,7 @@ pipeline{
 agent any
 
 tools{
-maven 'maven3.8.2'
+maven 'maven 3.8.6'
 
 }
 
@@ -20,7 +20,7 @@ stages{
 
   stage('CheckOutCode'){
     steps{
-    git branch: 'development', credentialsId: '957b543e-6f77-4cef-9aec-82e9b0230975', url: 'https://github.com/devopstrainingblr/maven-web-application-1.git'
+    git branch: 'development', credentialsId: '3a6e2b50-1a07-48f8-bc79-cb53f9914ea1', url: 'https://github.com/rami0123/maven-web-application.git'
 	
 	}
   }
@@ -30,7 +30,7 @@ stages{
   sh  "mvn clean package"
   }
   }
-/*
+
  stage('ExecuteSonarQubeReport'){
   steps{
   sh  "mvn clean sonar:sonar"
@@ -45,12 +45,12 @@ stages{
   
   stage('DeployAppIntoTomcat'){
   steps{
-  sshagent(['bfe1b3c1-c29b-4a4d-b97a-c068b7748cd0']) {
-   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@35.154.190.162:/opt/apache-tomcat-9.0.50/webapps/"    
+  sshagent(['1698a697-f328-483a-b7be-747b9672f2dd']) {
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.95.11.229:/opt/apache-tomcat-9.0.50/webapps/"    
   }
   }
   }
-  */
+  
 }//Stages Closing
 
 post{
